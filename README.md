@@ -19,13 +19,13 @@ Use:
 var turnkey = require('turnkey'),
   mongoose = require('mongoose'),
   app = require('express')(),
-    user = mongoose.model('users', new mongoose.Schema({
-      username: {
-        type: String,
-        required: true,
-        index: true
-      }
-    });
+  user = mongoose.model('users', new mongoose.Schema({
+    username: {
+      type: String,
+      required: true,
+      index: true
+    }
+  });
 
 turnkey.launch({
   router: app,

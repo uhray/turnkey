@@ -2,6 +2,10 @@
 
 A turnkey authentication module for nodejs + expressjs + mongoosejs.
 
+NOTE: this isn't yet complete. It's still under construction, but the skeleton
+      is out there and I'm going to complete it once I get a chance to use it
+      with my next real project.
+
 * [Quickstart](#quickstart)
 * [Guide](#guide)
 * [API](#api)

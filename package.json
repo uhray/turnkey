@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "utile": "^0.2.1",
-    "debug": "^2.0.0"
+    "debug": "^2.0.0",
+    "pwd": "0.0.4"
   }
 }

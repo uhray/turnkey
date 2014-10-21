@@ -109,6 +109,8 @@ Available Configurations:
 
   * `forgotMailer` - Optional - This is an optional function that can email a user when the forgot password route is hit. If this is null, the forgot & reset password routes will not be set. This will provide you (*user*, *code*, *callback*), where the user is the deserialized user object, the *code* is the code provided from the forgot password post and ready for the reset password, and the callback is to be called when done with (*error*).
 
+  * `cors` - Optional - This is an optional configuration to allow [cors](https://www.npmjs.org/package/cors) requests. If truthy and not an object, it creates a configuration for [cors](https://www.npmjs.org/package/cors) that allows all origins to request cross-origin and allows credentials to be stored. If the configuration is an object, this object will be passed as the options to the [cors](https://www.npmjs.org/package/cors) middleware.
+
 ## Middleware
 
 The following are special Express Middleware functions provided by the turnkey module. This Middleware functions are especially useful with [crud](https://github.com/uhray/crud) and [crud-mongoose](https://github.com/uhray/crud-mongoose).

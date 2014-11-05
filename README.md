@@ -55,7 +55,7 @@ app.get('/route', function isLoggedIn(req, res, next) {
 })
 ```
 
-You can look at the prebuilt middleware below for [loggedIn](mw-loggedIn) for a prebuilt function with that functionality and more, but this explains nicely what's going on.
+You can look at the prebuilt middleware below for [loggedIn](#mw-loggedIn) for a prebuilt function with that functionality and more, but this explains nicely what's going on.
 
 ### Routes
 

@@ -55,7 +55,7 @@ app.get('/route', function isLoggedIn(req, res, next) {
 })
 ```
 
-You can look at the prebuilt middleware below for [loggedIn](mw-loggedIn) for a prebuilt function with that functionality and more, but this explains nicely what's going on.
+You can look at the prebuilt middleware below for [loggedIn](#mw-loggedIn) for a prebuilt function with that functionality and more, but this explains nicely what's going on.
 
 ### Routes
 
@@ -145,7 +145,7 @@ This ensures that if you're updating a user and want to update the password then
   * The correct information is set so this user has authentication capability
   * The `body.old_password` field accurate authenticates the logged in user
 
-<a href="mw-loggedIn" name="mw-loggedIn">#</a> turnkey.**loggedIn**([*vals*])
+<a href="#mw-loggedIn" name="mw-loggedIn">#</a> turnkey.**loggedIn**([*vals*])
 
 This route is used to prevent a user from accessing routes he/she is unauthorized to access.
 

@@ -95,7 +95,9 @@ Available Configurations:
 
   * `logger` - *Default = console.log* - used to log errors.
 
-  * `username_key` - *Default = "username"* - the key on the `model` that stores the unique username. This is used for the default `findUser` function. If you override that function, this is not used by Turnkey.
+  * `usernameKey` - *Default = "username"* - the key on the `model` that stores the unique username. This is used for the default `findUser` function. If you override that function, this is not used by Turnkey.
+
+  > Previously, this was titled "username_key". If you are still using that, it is backwards compatible, but we prefer camelCase.
 
   * `minLength` - *Default = 8* - default minimum password length.
 
@@ -105,7 +107,7 @@ Available Configurations:
 
   * `serialize` - *Default = returns user._id* - This function is passed (*user*, *callback*) and is expected to call the *callback* with (*error*, *id*). Basically, it's supposed to convert a *user* to an *id*.
 
-  * `findUser` - *Default = finds user by username using the username_key configuration* - This function is called with (*body*, *callback*), where the *body* is the POST requests body and the *callback* is supposed to be called with (*error*, *user*). This is called when there is a POST request on the `/turnkey/login` route. By default, it expects the POST data to have `{ username: '<my username>' }`, because the `username_key` is `"username"` by default.
+  * `findUser` - *Default = finds user by username using the usernameKey configuration* - This function is called with (*body*, *callback*), where the *body* is the POST requests body and the *callback* is supposed to be called with (*error*, *user*). This is called when there is a POST request on the `/turnkey/login` route. By default, it expects the POST data to have `{ username: '<my username>' }`, because the `usernameKey` is `"username"` by default.
 
   * `forgotMailer` - Optional - This is an optional function that can email a user when the forgot password route is hit. If this is null, the forgot & reset password routes will not be set. This will provide you (*user*, *code*, *callback*), where the user is the deserialized user object, the *code* is the code provided from the forgot password post and ready for the reset password, and the callback is to be called when done with (*error*).
 

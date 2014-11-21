@@ -189,7 +189,7 @@ crud.entity('/users').Read()
 
 Verification gets its own section because it does things a bit uniquely. Turnkey modifies the user model to store the necessary authentication information. It also stores verfiication information:
 
-```
+```js
 user.verification: {
   code: { type: String, default: uuidCreator },
   verified: {

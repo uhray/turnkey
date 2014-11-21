@@ -133,7 +133,7 @@ This creates a middleware function to modify the requests `data` object to conta
 
 It's a bit confusing to explain, but super simple to use. If you're using crud and crud-mongoose, you could use it like this:
 
-```
+```js
 crud.entity('/users').Create()
   .use(turnkey.createPassword())
   .pipe(cm.createNew(Model));
@@ -147,7 +147,7 @@ This creates a middleware function to modify the requests `data` object to conta
 
 Again, it's a bit confusing to explain, but super simple to use. If you're using crud and crud-mongoose, you could use it like this:
 
-```
+```js
 crud.entity('/users/:_id').Update()
   .use(turnkey.updatePassword())
   .pipe(cm.updateOne(Model));
@@ -163,7 +163,7 @@ This route is used to prevent a user from accessing routes he/she is unauthorize
 
 If *vals* is not set, then it just makes sure any user is logged in (similar to the example [here](#express-middleware)). Use like this:
 
-```
+```js
 crud.entity('/users').Read()
   .use(turnkey.loggedIn())
   .pipe(cm.findAll(Model));
@@ -171,7 +171,7 @@ crud.entity('/users').Read()
 
 However, *vals* allows you to be more specific with who must be logged in. It's a key-value pairing that makes sure the logged in user has those key-values set. So, the following makes sure the user is an admin:
 
-```
+```js
 crud.entity('/users').Read()
   .use(turnkey.loggedIn({ role: 'admin' }))
   .pipe(cm.findAll(Model));
@@ -179,7 +179,7 @@ crud.entity('/users').Read()
 
 Or, if the value in the key-value pairing is an array, this ensures that the key is one of the provided options. So, the following makes sure the user is an admin or root.
 
-```
+```js
 crud.entity('/users').Read()
   .use(turnkey.loggedIn({ role: ['admin', 'root'] }))
   .pipe(cm.findAll(Model));

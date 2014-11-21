@@ -6,6 +6,7 @@ A turnkey authentication module for nodejs + expressjs + mongoosejs.
 * [Overview](#overview)
 * [Configure](#configure)
 * [Middleware](#middleware)
+* [Verification](#verification)
 * [Debug](#debug)
 
 ## Quickstart
@@ -71,6 +72,11 @@ Additionally, if you set the `forgotMailer` configuration (see below), then the 
  
 * `PUT` on `/turnkey/reset` - This listens for a PUT request to modify the user with the new password. The request body must have two values: *code*, containing the code created in the `/turnkey/forgot` route and handled by the `forgotMailer` function, and *password*, containing the new password. The response object is JSON and contains an *error* value if there was an error and a truthy *data* value if the password was successfully reset.
 
+* `GET` on `/turnkey/verificaton/:code` - This listens for a GET request to update the users as verified. After verification (success or failure), it redirects to the configuration `verifyRedirect` url with url params. See Examples:
+
+  - Success: http://site.com/?turnkey-verification=success
+  - Failure: http://site.com/?turnkey-verification=failure
+
 ## Configure
 
 To add turnkey to your application, you must launch it with configurations. Some required, some option.
@@ -100,6 +106,10 @@ Available Configurations:
   > Previously, this was titled "username_key". If you are still using that, it is backwards compatible, but we prefer camelCase.
 
   * `minLength` - *Default = 8* - default minimum password length.
+
+  * `verificationOn` - *Default = true* - Requires users to be verified before the default `findUser` works.
+
+  * `verifyRedirect` - *Default = "/"* - URL to redirect user once they hit the verification link.
 
   * `forgotLimit` - *Default = 1000 * 60 * 60 (1 hour)* - Limit for how long the forgot password code is active for. After this time limit, the user would need to do forgot password again before resetting. This is only used if the `forgotMailer` is set.
 
@@ -174,6 +184,24 @@ crud.entity('/users').Read()
   .use(turnkey.loggedIn({ role: ['admin', 'root'] }))
   .pipe(cm.findAll(Model));
 ```
+
+## Verification
+
+Verification gets its own section because it does things a bit uniquely. Turnkey modifies the user model to store the necessary authentication information. It also stores verfiication information:
+
+```
+user.verification: {
+  code: { type: String, default: uuidCreator },
+  verified: {
+    type: Boolean,
+    default: cfg.verificationOn ? false : true
+  }
+}
+```
+
+So, after a user is created in the database, you may want to send them and email with user.verification.code as the code in the URL.
+
+> It is very important to realize that you never want to show anyone the code when it hasn't been emailed to them. So you should never respond to the person who created the user with the code information. It should only be sent via email.
 
 ## Debug
 

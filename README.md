@@ -143,7 +143,7 @@ This ensures that if you're creating a new user, the correct information is set 
 
 <a href="mw-updatePassword" name="mw-updatePassword">#</a> turnkey.**updatePassword**()
 
-This creates a middleware function to modify the requests `data` object to contain the necessary information to update a password for a user. This middleware ignores everything if there is no `body.password` information. BUT, if there is a value at `body.password`, this ensures there is also a value at `body.old_password` and that the old password correctly authenticates the logged in user. It is standard for password updates to require authentication right there, so this is built in. If this old password is correcty, then modifies the object to remove `body.password` and `body.old_password` and then contain the necessary information that should be inserted into the Mongoose model for use with turnkeys' authentication.
+This creates a middleware function to modify the requests `data` object to contain the necessary information to update a password for a user. This middleware ignores everything if there is no `body.password` information. BUT, if there is a value at `body.password`, this ensures there is also a value at `body.oldPassword` and that the old password correctly authenticates the logged in user. It is standard for password updates to require authentication right there, so this is built in. If this old password is correcty, then modifies the object to remove `body.password` and `body.oldPassword` and then contain the necessary information that should be inserted into the Mongoose model for use with turnkeys' authentication. (note: `old_password` still works but is relegated).
 
 Again, it's a bit confusing to explain, but super simple to use. If you're using crud and crud-mongoose, you could use it like this:
 
@@ -155,7 +155,7 @@ crud.entity('/users/:_id').Update()
 
 This ensures that if you're updating a user and want to update the password then: 
   * The correct information is set so this user has authentication capability
-  * The `body.old_password` field accurate authenticates the logged in user
+  * The `body.oldPassword` field accurate authenticates the logged in user
 
 <a href="#mw-loggedIn" name="mw-loggedIn">#</a> turnkey.**loggedIn**([*vals*])
 

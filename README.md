@@ -72,7 +72,7 @@ Additionally, if you set the `forgotMailer` configuration (see below), then the 
  
 * `PUT` on `/turnkey/reset` - This listens for a PUT request to modify the user with the new password. The request body must have two values: *code*, containing the code created in the `/turnkey/forgot` route and handled by the `forgotMailer` function, and *password*, containing the new password. The response object is JSON and contains an *error* value if there was an error and a truthy *data* value if the password was successfully reset.
 
-* `GET` on `/turnkey/verificaton/:code` - This listens for a GET request to update the users as verified. After verification (success or failure), it redirects to the configuration `verifyRedirect` url with url params. See Examples:
+* `GET` on `/turnkey/verify/:code` - This listens for a GET request to update the users as verified. After verification (success or failure), it redirects to the configuration `verifyRedirect` url with url params. See Examples:
 
   - Success: http://site.com/?turnkey-verification=success
   - Failure: http://site.com/?turnkey-verification=failure

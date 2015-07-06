@@ -113,6 +113,8 @@ Available Configurations:
 
   * `loginOnVerify` - *Default = false* - Logs the user in when they verify their email.
 
+  * `logoutRedirect` - *Default = function* - Function that decides thes logout redirect url. By default the function returns `'/#/?logout=Math.random()'`.
+
   * `forgotLimit` - *Default = 1000 * 60 * 60 (1 hour)* - Limit for how long the forgot password code is active for. After this time limit, the user would need to do forgot password again before resetting. This is only used if the `forgotMailer` is set.
 
   * `deserialize` - *Default = uses Mongoose findById on the model* - This function is passed (*id*, *callback*) and expects the *callback* to be called with (*error*, *user*). Basically, it's supposed to convert an *id* to a *user*. 

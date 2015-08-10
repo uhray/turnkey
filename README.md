@@ -77,6 +77,8 @@ Additionally, if you set the `forgotMailer` configuration (see below), then the 
   - Success: http://site.com/?turnkey-verification=success
   - Failure: http://site.com/?turnkey-verification=failure
 
+  > If you want a JSON response instead of a redirect, add `?json=true` to the request.
+
 ## Configure
 
 To add turnkey to your application, you must launch it with configurations. Some required, some option.
@@ -126,6 +128,12 @@ Available Configurations:
   * `forgotMailer` - Optional - This is an optional function that can email a user when the forgot password route is hit. If this is null, the forgot & reset password routes will not be set. This will provide you (*user*, *code*, *callback*), where the user is the deserialized user object, the *code* is the code provided from the forgot password post and ready for the reset password, and the callback is to be called when done with (*error*). Additionally, the express request and response will be in the context as `this.request` and `this.response`.
 
   * `cors` - Optional - This is an optional configuration to allow [cors](https://www.npmjs.org/package/cors) requests. If truthy and not an object, it creates a configuration for [cors](https://www.npmjs.org/package/cors) that allows all origins to request cross-origin and allows credentials to be stored. If the configuration is an object, this object will be passed as the options to the [cors](https://www.npmjs.org/package/cors) middleware.
+
+  * `codeMaker` - Default = `turnkey.tools.uuid()` - This is an optional configuration that allows you to change the codemaker for verification. By default it's a uuid, but you can set it to other things;.
+
+    * `turnkey.tools.uuid()` - Returns a function that creates a uuid;
+
+    * `turnkey.tools.nums(n)` - Returns a function that creates a random strong of numbers `n` characters long.
 
 ## Middleware
 

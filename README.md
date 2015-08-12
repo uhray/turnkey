@@ -135,6 +135,8 @@ Available Configurations:
 
     * `turnkey.tools.nums(n)` - Returns a function that creates a random strong of numbers `n` characters long.
 
+  * `authKeys` - Optional - These are keys passed to [keygrip](https://www.npmjs.com/package/keygrip) with allow you to authenticate via the header `Turnkey-Auth`. You provide the data returned from `/turnkey/login` as the header to be logged in here.
+
 ## Middleware
 
 The following are special Express Middleware functions provided by the turnkey module. This Middleware functions are especially useful with [crud](https://github.com/uhray/crud) and [crud-mongoose](https://github.com/uhray/crud-mongoose).

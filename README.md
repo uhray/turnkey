@@ -199,6 +199,15 @@ crud.entity('/users').Read()
   .pipe(cm.findAll(Model));
 ```
 
+<a href="#mw-checkResend" name="mw-checkResend">#</a> turnkey.**checkResend**([*cb*, *modify*])
+
+This is useful middleware to check if you need to resend a verification email to someone who tries to signup again. Usually, a database would fail if the user already exists. This allows you to resend and email and act like they just signed up, so it's not confusing to a new user.
+
+If the user does not exists OR the user exists but is already verified, nothing happens. If the user exists AND has not verified, this will respond from the server with that user's information to make it appear like the user was just recreated.
+
+  * *cb* - A callback that receives the user object if an unverified user was trying to re-signup. The use for this is to probably resend a verification email.
+  * *modify* - This allows you to modify the user object before it is responded from the server. Perhaps you'd want to remove personal information if the user already exists.
+
 ## Verification
 
 Verification gets its own section because it does things a bit uniquely. Turnkey modifies the user model to store the necessary authentication information. It also stores verfiication information:

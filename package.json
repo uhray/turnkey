@@ -1,6 +1,6 @@
 {
   "name": "turnkey",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "turnkey authentication library for expressjs",
   "main": "index.js",
   "scripts": {
@@ -8,10 +8,12 @@
   },
   "author": "Robert Thompson",
   "license": "MIT",
+  "bin": "bin/turnkey",
   "dependencies": {
     "cors": "^2.4.2",
     "debug": "^2.0.0",
     "keygrip": "^1.0.1",
+    "optimist": "^0.6.1",
     "pwd": "0.0.4",
     "utile": "^0.2.1",
     "uuid": "^2.0.1"

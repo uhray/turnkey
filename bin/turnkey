@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+var argv = require('optimist')
+            .options('iterations', { default: 12288 })
+            .options('passlength', { default: 256 })
+            .options('password', { demand: true })
+            .argv,
+    pass = require('pwd');
+
+
+
+
+pass.iterations(argv.iterations);
+pass.length(argv.passlength);
+
+pass.hash(argv.password, function(e, salt, hash) {
+  if (e) console.log('error: %j', e);
+  else console.log('%j', { hash: hash, salt: salt });
+});
+
+
+

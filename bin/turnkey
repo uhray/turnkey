@@ -14,6 +14,3 @@ pass.hash(argv.password, function(e, salt, hash) {
   if (e) console.log('error: %j', e);
   else console.log('%j', { hash: hash, salt: salt });
 });
-
-
-

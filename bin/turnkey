@@ -7,9 +7,6 @@ var argv = require('optimist')
             .argv,
     pass = require('pwd');
 
-
-
-
 pass.iterations(argv.iterations);
 pass.length(argv.passlength);
 

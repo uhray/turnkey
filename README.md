@@ -155,9 +155,11 @@ crud.entity('/users').Create()
 
 This ensures that if you're creating a new user, the correct information is set so this user has authentication capability.
 
-<a href="mw-updatePassword" name="mw-updatePassword">#</a> turnkey.**updatePassword**()
+<a href="mw-updatePassword" name="mw-updatePassword">#</a> turnkey.**updatePassword**(*cb*)
 
-This creates a middleware function to modify the requests `data` object to contain the necessary information to update a password for a user. This middleware ignores everything if there is no `body.password` information. BUT, if there is a value at `body.password`, this ensures there is also a value at `body.oldPassword` and that the old password correctly authenticates the logged in user. It is standard for password updates to require authentication right there, so this is built in. If this old password is correcty, then modifies the object to remove `body.password` and `body.oldPassword` and then contain the necessary information that should be inserted into the Mongoose model for use with turnkeys' authentication. (note: `old_password` still works but is relegated).
+This creates a middleware function to modify the requests `data` object to contain the necessary information to update a password for a user. This middleware ignores everything if there is no `body.password` information. BUT, if there is a value at `body.password`, this ensures there is also a value at `body.oldPassword` and that the old password correctly authenticates the logged in user. It is standard for password updates to require authentication right there, so this is built in. If this old password is correct, then it modifies the object to remove `body.password` and `body.oldPassword` and then contain the necessary information that should be inserted into the Mongoose model for use with turnkeys' authentication. (note: `old_password` still works but is relegated).
+
+ALERNATIVELY, you can pass a callback function as *cb* that will determine if `oldPassword` is required. This is useful for an admin panel where certain users (e.g. admins) can update anyone's password. The callback function is called `cb(req, res)` and must return a truthy value as to whether the user can update without `oldPassword` present.
 
 Again, it's a bit confusing to explain, but super simple to use. If you're using crud and crud-mongoose, you could use it like this:
 

@@ -9,6 +9,14 @@
   "author": "Robert Thompson",
   "license": "MIT",
   "bin": "bin/turnkey",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-jscs": "^1.2.0",
+    "jscs": "1.7.3",
+    "mocha": "^2.3.4",
+    "mongoose": "^4.3.1",
+    "unit.js": "^2.0.0"
+  },
   "dependencies": {
     "cors": "^2.4.2",
     "debug": "^2.0.0",

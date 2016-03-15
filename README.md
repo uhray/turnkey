@@ -6,6 +6,7 @@ A turnkey authentication module for nodejs + expressjs + mongoosejs.
 * [Overview](#overview)
 * [Configure](#configure)
 * [Middleware](#middleware)
+* [Events](#events)
 * [Verification](#verification)
 * [Debug](#debug)
 
@@ -211,6 +212,23 @@ If the user does not exists OR the user exists but is already verified, nothing 
 
   * *cb* - A callback that receives the user object if an unverified user was trying to re-signup. The use for this is to probably resend a verification email.
   * *modify* - This allows you to modify the user object before it is responded from the server. Perhaps you'd want to remove personal information if the user already exists.
+
+## Events
+
+Events can be accessed by running the following:
+
+```js
+var turnkey = require('turnkey');
+
+turnkey.on('eventName', function(args) {
+  // function called when event fires
+});
+```
+
+The available events are below:
+
+  * *verification* - Call when a user is verified. Arguments: (*userObject*).
+
 
 ## Verification
 

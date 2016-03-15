@@ -1,6 +1,6 @@
 {
   "name": "turnkey",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "description": "turnkey authentication library for expressjs",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,7 @@
   "dependencies": {
     "cors": "^2.4.2",
     "debug": "^2.0.0",
+    "events": "^1.1.0",
     "keygrip": "^1.0.1",
     "optimist": "^0.6.1",
     "pwd": "0.0.4",

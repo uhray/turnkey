@@ -8,6 +8,7 @@ A turnkey authentication module for nodejs + expressjs + mongoosejs.
 * [Middleware](#middleware)
 * [Events](#events)
 * [Verification](#verification)
+* [Mocking Users](#mocking-users)
 * [Debug](#debug)
 
 ## Quickstart
@@ -80,6 +81,8 @@ Additionally, if you set the `forgotMailer` configuration (see below), then the 
 
   > If you want a JSON response instead of a redirect, add `?json=true` to the request.
 
+* `GET` on `/turnkey/mockUser/:user` - This listens for a GET request to set the current user's authentication to a new user. For more information, see [mocking users](#mocking-users) or [configurations](#configure).
+
 ## Configure
 
 To add turnkey to your application, you must launch it with configurations. Some required, some option.
@@ -139,6 +142,14 @@ Available Configurations:
   * `authKeys` - Optional - These are keys passed to [keygrip](https://www.npmjs.com/package/keygrip) with allow you to authenticate via the header `Turnkey-Auth`. You provide the data returned from `/turnkey/login` as the header to be logged in here.
 
   * `verifyPassword` - Optional - This is an option function that can verify the acceptance of a password. It's called with one argument (the password) and much return a truthy validity. An example would be to require all passwords have a symbol and number.
+
+  * `mockUser` - *Default: false* - This allows users to mock control of another user. Turned off by default.
+
+  * `mockUserAuth` - *Default: everyone* - If *mockUser* is turned on, this is a function that is passed the current user object and must return a true or false value as to whether the current user should be able to mock another. A good example is restricting mock access to those that are admins.
+
+  * `mockUserKey` - *Default: 'username'* - To mock a user, they must go to the link `/turnkey/mockUser/:user`, where the user param will be searched against the mockUserKey. Default is looking for the username. Another common one would be email.
+
+  * `mockUserRedirect` - *Default: '/'* - After the `/turnkey/mockUser/:user` url is hit, it will redirect to this url and act as the new user.
 
 ## Middleware
 
@@ -247,6 +258,12 @@ user.verification: {
 So, after a user is created in the database, you may want to send them and email with user.verification.code as the code in the URL.
 
 > It is very important to realize that you never want to show anyone the code when it hasn't been emailed to them. So you should never respond to the person who created the user with the code information. It should only be sent via email.
+
+## Mocking Users
+
+To mock users, you need to see the necessary [configurations](#configure). But, after mocking users is turned on a configured, you can do the following:
+
+Say you are user `admin` and want to be user `user1`. You can go to the user `/turnkey/mockUser/user1`. Now, everything you do on the site will make you act like `user1`. To switch back, you must logout and you will be logged out as `user1` and back to being `admin`.
 
 ## Debug
 

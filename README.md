@@ -83,6 +83,25 @@ Additionally, if you set the `forgotMailer` configuration (see below), then the 
 
 * `GET` on `/turnkey/mockUser/:user` - This listens for a GET request to set the current user's authentication to a new user. For more information, see [mocking users](#mocking-users) or [configurations](#configure).
 
+* `POST` on `/turnkey/socialAuth` - A post request here will login users with a social network. You'll need to pass data like the following:
+
+  ```js
+    {
+      "auth": {
+        "network": "facebook",
+        "id": "123213219043",                // user's id on the network
+        "token": "fjdkaljf234jkfdaf;ajfdsa", // user's auth token
+        "clientId": "fdafdkjl;32098fdajkl"   // apps id on the network
+      },
+      "create": {  // optional if you with a user to be created if not found
+        // Mixed object of data to create the user if they are not found ... such as email
+        "email": "newuser@gmail.com"
+      }
+    }
+  ```
+
+  > See [configurations](#configure) for more information about social login options. Currently only Facebook and Twitter are supported.
+
 ## Configure
 
 To add turnkey to your application, you must launch it with configurations. Some required, some option.
@@ -150,6 +169,12 @@ Available Configurations:
   * `mockUserKey` - *Default: 'username'* - To mock a user, they must go to the link `/turnkey/mockUser/:user`, where the user param will be searched against the mockUserKey. Default is looking for the username. Another common one would be email.
 
   * `mockUserRedirect` - *Default: '/'* - After the `/turnkey/mockUser/:user` url is hit, it will redirect to this url and act as the new user.
+
+  * `socialAuth` - *Default: `false`* - Turns on social auth. Off by default.
+
+  * `socialSecrets` -*Default: `{}`* - Object of key-value, where the key is the network (facebook or twitter currently) and the value is the app secret for that network.
+
+  * `socialCreate` - If a function is provided here, it will be called when someone tries to login with a social network and does nto currently have an account. The function will be passed `(userdata, callback)` where userdata stems from the "create" value on the POST `/turnkey/socialAuth` and the callback i sto be called with `(error, createdUser)`.
 
 ## Middleware
 

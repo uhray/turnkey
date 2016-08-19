@@ -158,7 +158,7 @@ Available Configurations:
 
     * `turnkey.tools.nums(n)` - Returns a function that creates a random strong of numbers `n` characters long.
 
-  * `authKeys` - Optional - These are keys passed to [keygrip](https://www.npmjs.com/package/keygrip) with allow you to authenticate via the header `Turnkey-Auth`. You provide the data returned from `/turnkey/login` as the header to be logged in here.
+  * `authKeys` - Optional - These are keys passed to [keygrip](https://www.npmjs.com/package/keygrip) with allow you to authenticate via the header `Turnkey-Auth`. You provide the data returned from `/turnkey/login` as the header to be logged in here. Additionally, you can provide the auth key as a query like `?turnkeyAuth=myauthenticationtoken`.
 
   * `verifyPassword` - Optional - This is an option function that can verify the acceptance of a password. It's called with one argument (the password) and much return a truthy validity. An example would be to require all passwords have a symbol and number.
 

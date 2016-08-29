@@ -120,9 +120,7 @@ Available Configurations:
 
   * `model` - *Required* - Mongoose JS User Model. This object will be modified with a "turnkey" object that contains useful information for turnkey.
 
-  * `hashLength` - *Default = 256* - length for [pwd](https://www.npmjs.org/package/pwd) hash.
-
-  * `hashIterations` - *Default = 12288* - iterations for [pwd](https://www.npmjs.org/package/pwd) salt.
+  * `hashIterations` - *Default = 10* - iterations for bcrypt
 
   * `logger` - *Default = console.log* - used to log errors.
 

@@ -1,16 +1,14 @@
 #!/usr/bin/env node
 
 var argv = require('optimist')
-            .options('iterations', { default: 12288 })
-            .options('passlength', { default: 256 })
+            .options('iterations', { default: 10 })
             .options('password', { demand: true })
             .argv,
-    pass = require('pwd');
+    pass = require('../lib/pwd');
 
 pass.iterations(argv.iterations);
-pass.length(argv.passlength);
 
-pass.hash(argv.password, function(e, salt, hash) {
+pass.hash(argv.password, function(e, pw) {
   if (e) console.log('error: %j', e);
-  else console.log('%j', { hash: hash, salt: salt });
+  else console.log(pw);
 });

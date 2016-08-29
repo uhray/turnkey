@@ -171,14 +171,14 @@ describe('proto', function() {
 
     turnkey.launch(mock);
 
-    useCalled.length.must.equal(1);
+    useCalled.length.must.equal(2);
     addCalled.length.must.equal(1);
     addCalled[0].must.be.a.object();
     optionsCalled.length.must.equal(0);
 
     getRoute.must.contain('/turnkey/logout');
     getRoute.must.contain('/turnkey/verify/:code');
-    getRoute.length.must.equal(2);
+    getRoute.length.must.equal(3);
 
     postRoute.must.contain('/turnkey/login');
     postRoute.must.contain('/turnkey/forgot');
@@ -199,17 +199,16 @@ describe('proto', function() {
   });
 
   it('proto.makeHash', function(done) {
-    turnkey.makeHash('testpassword', function(e, salt, hash) {
+    turnkey.makeHash('testpassword', function(e, pw) {
       test.assert(e == null);
-      salt.must.be.a.string();
-      hash.must.be.a.string();
+      pw.must.be.a.string();
       done();
     });
   });
 
   it('proto.verify', function(done) {
-    turnkey.makeHash('testpassword', function(e, salt, hash) {
-      turnkey.verify('testpassword', { salt: salt, hash: hash }, function(v) {
+    turnkey.makeHash('testpassword', function(e, hashed) {
+      turnkey.verify('testpassword', hashed, function(v) {
         test.assert(v);
         done();
       });
@@ -341,9 +340,9 @@ describe('proto', function() {
       function(cb) {  // works with old password
         var fn = turnkey.updatePassword();
 
-        turnkey.makeHash('testpassword', function(e, salt, hash) {
+        turnkey.makeHash('testpassword', function(e, hashed) {
           body.oldPassword = 'testpassword';
-          req.user = { turnkey: { password: { salt: salt, hash: hash } } };
+          req.user = { turnkey: { password: hashed } };
 
           doJson = function(e) {
             test.assert(false, 'Should not get here: ' + JSON.stringify(e));
@@ -352,7 +351,7 @@ describe('proto', function() {
           fn(req, res, function() {
             test.assert(!body.password);
             test.assert(!body.oldPassword);
-            body.turnkey.password.must.be.a.object();
+            body.turnkey.password.must.be.a.string();
             body.turnkey = null;  // reset
             cb();
           });
@@ -372,7 +371,7 @@ describe('proto', function() {
         fn(req, res, function() {
           test.assert(!body.password);
           test.assert(!body.oldPassword);
-          body.turnkey.password.must.be.a.object();
+          body.turnkey.password.must.be.a.string();
           cb();
         });
       }

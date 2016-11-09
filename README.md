@@ -93,7 +93,7 @@ Additionally, if you set the `forgotMailer` configuration (see below), then the 
         "token": "fjdkaljf234jkfdaf;ajfdsa", // user's auth token
         "clientId": "fdafdkjl;32098fdajkl"   // apps id on the network
       },
-      "create": {  // optional if you with a user to be created if not found
+      "create": {  // optional if you wanted a user to be created if not found
         // Mixed object of data to create the user if they are not found ... such as email
         "email": "newuser@gmail.com"
       }

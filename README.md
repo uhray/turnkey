@@ -93,7 +93,7 @@ Additionally, if you set the `forgotMailer` configuration (see below), then the 
         "token": "fjdkaljf234jkfdaf;ajfdsa", // user's auth token
         "clientId": "fdafdkjl;32098fdajkl"   // apps id on the network
       },
-      "create": {  // optional if you with a user to be created if not found
+      "create": {  // optional if you wanted a user to be created if not found
         // Mixed object of data to create the user if they are not found ... such as email
         "email": "newuser@gmail.com"
       }
@@ -172,7 +172,7 @@ Available Configurations:
 
   * `socialSecrets` -*Default: `{}`* - Object of key-value, where the key is the network (facebook or twitter currently) and the value is the app secret for that network.
 
-  * `socialCreate` - If a function is provided here, it will be called when someone tries to login with a social network and does nto currently have an account. The function will be passed `(userdata, callback)` where userdata stems from the "create" value on the POST `/turnkey/socialAuth` and the callback i sto be called with `(error, createdUser)`.
+  * `socialCreate` - If a function is provided here, it will be called when someone tries to login with a social network and does not currently have an account. The function will be passed `(userdata, callback)` where userdata stems from the "create" value on the POST `/turnkey/socialAuth` and the callback is to be called with `(error, createdUser)`.
 
 ## Middleware
 

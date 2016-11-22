@@ -1,6 +1,6 @@
 {
   "name": "turnkey",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "turnkey authentication library for expressjs",
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,7 @@
     "keygrip": "^1.0.1",
     "lodash": "^4.15.0",
     "optimist": "^0.6.1",
+    "request": "^2.79.0",
     "twitter": "^1.2.5",
     "utile": "^0.2.1",
     "uuid": "^2.0.1"

@@ -100,7 +100,7 @@ Additionally, if you set the `forgotMailer` configuration (see below), then the 
     }
   ```
 
-  > See [configurations](#configure) for more information about social login options. Currently only Facebook and Twitter are supported.
+  > See [configurations](#configure) for more information about social login options. Currently only Facebook, Twitter, LinkedIn, and Google are supported.
 
 ## Configure
 

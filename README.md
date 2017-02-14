@@ -174,6 +174,8 @@ Available Configurations:
 
   * `socialCreate` - If a function is provided here, it will be called when someone tries to login with a social network and does not currently have an account. The function will be passed `(userdata, callback)` where userdata stems from the "create" value on the POST `/turnkey/socialAuth` and the callback is to be called with `(error, createdUser)`.
 
+  * `socialUpdate` - If a function is provided here, it will be called when someone tries to login with a social network and already has an account. The function will be passed `(currentUser, newInfo, callback)` where newInfo stems from the "create" value on the POST `/turnkey/socialAuth` and the callback is to be called with `(error, createdUser)`.
+
 ## Middleware
 
 The following are special Express Middleware functions provided by the turnkey module. This Middleware functions are especially useful with [crud](https://github.com/uhray/crud) and [crud-mongoose](https://github.com/uhray/crud-mongoose).

@@ -1,6 +1,6 @@
 {
   "name": "turnkey",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "description": "turnkey authentication library for expressjs",
   "main": "index.js",
   "scripts": {

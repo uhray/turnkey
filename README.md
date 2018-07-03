@@ -91,7 +91,8 @@ Additionally, if you set the `forgotMailer` configuration (see below), then the 
         "network": "facebook",
         "id": "123213219043",                // user's id on the network
         "token": "fjdkaljf234jkfdaf;ajfdsa", // user's auth token
-        "clientId": "fdafdkjl;32098fdajkl"   // apps id on the network
+        "clientId": "fdafdkjl;32098fdajkl",  // apps id on the network
+        "expiration": new Date()             // some date of expiration
       },
       "create": {  // optional if you wanted a user to be created if not found
         // Mixed object of data to create the user if they are not found ... such as email
